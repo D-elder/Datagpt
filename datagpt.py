@@ -941,7 +941,7 @@ HTML_TEMPLATE = """
 # Application factory
 def create_app():
     """Create and configure the Flask application"""
-    return DataAnalyticsApp()
+    return DataAnalyticsApp().app
 
 if __name__ == "__main__":
     # Check if .env file exists
