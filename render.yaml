@@ -1,0 +1,69 @@
+services:
+  - type: web
+    name: datagpt
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: python datagpt.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ANTHROPIC_MODEL
+        sync: false
+      - key: ANTHROPIC_API_BASE
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+      - key: SSMS_CONN_STR
+        sync: false
+      - key: DATABASE_NAME
+        sync: false
+      - key: DB_POOL_SIZE
+        sync: false
+      - key: DB_MAX_OVERFLOW
+        sync: false
+      - key: DB_TIMEOUT
+        sync: false
+      - key: MAX_QUERY_TIME
+        sync: false
+      - key: MAX_RESULT_ROWS
+        sync: false
+      - key: BUSINESS_DOMAIN
+        sync: false
+      - key: COMPANY_NAME
+        sync: false
+      - key: FLASK_ENV
+        sync: false
+      - key: FLASK_DEBUG
+        sync: false
+      - key: HOST
+        sync: false
+      - key: PORT
+        sync: false
+      - key: MAX_CONTENT_LENGTH
+        sync: false
+      - key: ENABLE_SCHEMA_CACHE
+        sync: false
+      - key: SCHEMA_CACHE_DURATION
+        sync: false
+      - key: ENABLE_QUERY_CACHE
+        sync: false
+      - key: QUERY_CACHE_DURATION
+        sync: false
+      - key: LOG_LEVEL
+        sync: false
+      - key: LOG_FILE
+        sync: false
+      - key: ENABLE_QUERY_LOGGING
+        sync: false
+      - key: ENABLE_AUTH
+        sync: false
+      - key: SESSION_TIMEOUT
+        sync: false
+      - key: CACHE_FOLDER
+        sync: false
+      - key: EXPORT_FOLDER
+        sync: false
