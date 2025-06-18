@@ -30,6 +30,7 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
 class DataAnalyticsApp:
     def __init__(self):
         self.app = Flask(__name__)
@@ -372,7 +373,8 @@ Example response:
             
             # Store in database
             conn = self.get_database_connection()
-            table_name = f"data_{filename.split('.')[0]}"
+            raw_name = filename.split('.')[0]
+            table_name = f"data_{re.sub(r'[^a-zA-Z0-9_]', '_', raw_name)}"
             df.to_sql(table_name, conn, if_exists='replace', index=False)
             conn.close()
             
@@ -938,16 +940,23 @@ HTML_TEMPLATE = """
 </html>
 """
 
-# Application factory
-def create_app():
-    """Create and configure the Flask application"""
-    return DataAnalyticsApp().app
+# # Application factory
+# def create_app():
+#     """Create and configure the Flask application"""
+#     return DataAnalyticsApp().app
+
+# Create the Flask app instance
+app = DataAnalyticsApp().app  # <-- ADD THIS LINE at global scope
 
 if __name__ == "__main__":
-    # Check if .env file exists
-    if not os.path.exists('.env'):
-        logger.warning("No .env file found. Please create one using the provided .env template.")
-        logger.warning("The application may not work correctly without proper environment variables.")
-    
-    app = create_app()
     app.run()
+
+
+# if __name__ == "__main__":
+#     # Check if .env file exists
+#     if not os.path.exists('.env'):
+#         logger.warning("No .env file found. Please create one using the provided .env template.")
+#         logger.warning("The application may not work correctly without proper environment variables.")
+    
+#     app = create_app()
+#     app.run()
